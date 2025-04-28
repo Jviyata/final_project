@@ -11,42 +11,42 @@
     <div class="container">
         <header>
             <h1>The Changing Landscape of Popular Music</h1>
-            <p class="intro">An interactive exploration of Spotify music data, revealing trends, patterns, and insights about what makes songs popular across different eras.</p>
+            <p class="intro">An interactive exploration of Spotify music data, revealing patterns and insights about what makes songs popular across different genres.</p>
         </header>
 
         <section id="overview">
             <h2>Dataset Overview</h2>
-            <p>This analysis explores a dataset containing information about approximately 45,000 songs with audio features retrieved via the Spotify Web API. The data includes track information, audio features like danceability and energy, popularity scores, and release dates. The visualizations below highlight key patterns and insights discovered in the data.</p>
+            <p>This analysis explores a dataset containing information about approximately 45,000 songs with audio features retrieved via the Spotify Web API. The data includes track information, audio features like danceability and energy, popularity scores, and genre classifications. The visualizations below highlight key patterns and insights discovered in the data.</p>
         </section>
 
         <section id="visualization-section">
             <div class="chart-container">
-                <h2>Line Chart: Evolution of Music Features Over Time</h2>
-                <p class="chart-description">This line chart tracks how key song attributes (energy, danceability, acousticness) have changed from 1960 to the present day.</p>
-                <div id="trend-chart"></div>
+                <h2>Radar Chart: Genre Audio Profiles</h2>
+                <p class="chart-description">This radar chart compares multiple audio features across different genres, showing the distinctive "fingerprint" of each music style.</p>
+                <div id="radar-chart"></div>
                 <div class="insight-box">
                     <h3>Key Insight</h3>
-                    <p>Music has become significantly less acoustic and more energetic over the decades, with the most dramatic shift occurring in the late 1980s with the rise of electronic music production techniques.</p>
+                    <p>Each genre has a distinctive audio profile. Classical music shows high acousticness but low danceability, while Dance music demonstrates the opposite pattern with high energy and danceability but low acousticness.</p>
                 </div>
             </div>
-
+            
             <div class="chart-container">
-                <h2>Scatter Plot: What Makes a Song Popular?</h2>
-                <p class="chart-description">This scatter plot visualizes the relationship between danceability (x-axis), energy (y-axis), and popularity (bubble size) to reveal patterns in successful songs.</p>
-                <div id="popularity-chart"></div>
+                <h2>Heatmap: Genre Audio Feature Intensity</h2>
+                <p class="chart-description">This heatmap visualizes the intensity of different audio features across music genres, with darker colors representing higher values.</p>
+                <div id="heatmap-chart"></div>
                 <div class="insight-box">
                     <h3>Key Insight</h3>
-                    <p>The visualization shows that songs with high danceability (>0.7) and moderate-to-high energy (0.5-0.8) tend to achieve the highest popularity scores, suggesting listeners prefer music that balances movement and intensity.</p>
+                    <p>The heatmap reveals that genres like Electronic and Dance have consistently high values across danceability and energy but low acousticness, while Folk and Classical show the inverse pattern, highlighting the technical differences in production styles.</p>
                 </div>
             </div>
-
+            
             <div class="chart-container">
-                <h2>Bubble Chart: Clustering Songs by Audio Features</h2>
-                <p class="chart-description">This complex bubble chart represents multiple dimensions: valence (x-axis), energy (y-axis), acousticness (color), and popularity (bubble size).</p>
-                <div id="cluster-chart"></div>
+                <h2>Edge Bundling: Genre Similarity Network</h2>
+                <p class="chart-description">This edge bundling visualization shows connections between genres based on audio feature similarity, revealing how different music styles relate to each other.</p>
+                <div id="edge-bundling-chart"></div>
                 <div class="insight-box">
                     <h3>Key Insight</h3>
-                    <p>The visualization reveals natural clustering of songs that correspond to genres, even without explicit genre labels. For example, high valence and low energy often indicate acoustic folk music, while low valence and high energy often represent heavy metal or intense electronic music.</p>
+                    <p>The network reveals surprising connections between seemingly different genres. For example, R&B and Indie show strong similarity in their audio profiles despite their different cultural origins, suggesting unexpected musical parallels.</p>
                 </div>
             </div>
         </section>
@@ -75,15 +75,15 @@
             </div>
             <div class="storytelling">
                 <h3>Which analytical method works best for music analysis?</h3>
-                <p>Unsupervised clustering using t-SNE combined with audio feature analysis provides the most insightful perspective on music evolution. Traditional time-series analysis detected the gradual trends (R² of 0.64 for acousticness decline), while the clustering approach revealed more nuanced patterns in how musical styles emerge, evolve, and sometimes resurge years later. The interactive D3.js visualizations allow users to explore these musical patterns across time periods, popularity levels, and audio characteristics.</p>
+                <p>Unsupervised clustering using t-SNE combined with audio feature analysis provides the most insightful perspective on music evolution. The edge bundling approach shows how genres form natural clusters based on their audio characteristics, while the radar and heatmap visualizations make it easy to identify the distinctive traits of each genre. These interactive D3.js visualizations allow users to explore musical patterns across genres, audio characteristics, and popularity levels.</p>
             </div>
         </section>
 
         <section id="conclusion">
             <h2>Conclusion</h2>
-            <p>The visualizations presented in this project reveal several important trends in popular music. We can observe the clear shift toward less acoustic and more produced sound over time, the optimal balance of audio features that correlate with high popularity, and the natural clustering of songs into genre-like groups. The data suggests that while music production technology has dramatically changed the sonic landscape, certain fundamental elements of what makes music appealing remain consistent across decades. This analysis provides insights not only for music enthusiasts but also for artists and producers looking to understand the changing preferences of listeners.</p>
+            <p>The visualizations presented in this project reveal important patterns in popular music genres. We can observe the distinctive audio profiles of each genre through the radar chart, the intensity of various audio features in the heatmap, and the surprising connections between genres in the edge bundling visualization. The data suggests that while genres have their own distinct characteristics, there are interesting overlaps and similarities between seemingly different styles of music. This analysis provides insights not only for music enthusiasts but also for artists and producers looking to understand the technical aspects of different music genres and their relationships.</p>
         </section>
     </div>
     <script src="js/main.js" type="module"></script>
 </body>
-</html>44
+</html>
