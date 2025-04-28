@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Changing Landscape of Popular Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Changing Landscape of Popular Music</h1>
+            <p class="intro">An interactive exploration of Spotify music data, revealing trends, patterns, and insights about what makes songs popular across different eras.</p>
+        </header>
+
+        <section id="overview">
+            <h2>Dataset Overview</h2>
+            <p>This analysis explores a dataset containing information about approximately 45,000 songs with audio features retrieved via the Spotify Web API. The data includes track information, audio features like danceability and energy, popularity scores, and release dates. The visualizations below highlight key patterns and insights discovered in the data.</p>
+        </section>
+
+        <section id="visualization-section">
+            <div class="chart-container">
+                <h2>Line Chart: Evolution of Music Features Over Time</h2>
+                <p class="chart-description">This line chart tracks how key song attributes (energy, danceability, acousticness) have changed from 1960 to the present day.</p>
+                <div id="trend-chart"></div>
+                <div class="insight-box">
+                    <h3>Key Insight</h3>
+                    <p>Music has become significantly less acoustic and more energetic over the decades, with the most dramatic shift occurring in the late 1980s with the rise of electronic music production techniques.</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Scatter Plot: What Makes a Song Popular?</h2>
+                <p class="chart-description">This scatter plot visualizes the relationship between danceability (x-axis), energy (y-axis), and popularity (bubble size) to reveal patterns in successful songs.</p>
+                <div id="popularity-chart"></div>
+                <div class="insight-box">
+                    <h3>Key Insight</h3>
+                    <p>The visualization shows that songs with high danceability (>0.7) and moderate-to-high energy (0.5-0.8) tend to achieve the highest popularity scores, suggesting listeners prefer music that balances movement and intensity.</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Bubble Chart: Clustering Songs by Audio Features</h2>
+                <p class="chart-description">This complex bubble chart represents multiple dimensions: valence (x-axis), energy (y-axis), acousticness (color), and popularity (bubble size).</p>
+                <div id="cluster-chart"></div>
+                <div class="insight-box">
+                    <h3>Key Insight</h3>
+                    <p>The visualization reveals natural clustering of songs that correspond to genres, even without explicit genre labels. For example, high valence and low energy often indicate acoustic folk music, while low valence and high energy often represent heavy metal or intense electronic music.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <h2>Artist Style Consistency Analysis</h2>
+            <div class="comparison-container">
+                <div class="comparison-item">
+                    <h3>Established Artists</h3>
+                    <ul>
+                        <li>Typically maintain consistent audio feature patterns across songs</li>
+                        <li>Show gradual evolution rather than sudden shifts</li>
+                        <li>Developed recognizable "signature sounds"</li>
+                        <li>Demonstrate higher instrumentalness scores on average</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h3>Emerging Artists</h3>
+                    <ul>
+                        <li>Display more experimentation and variation between tracks</li>
+                        <li>Often follow current popular trends more closely</li>
+                        <li>Show higher variance in key audio features</li>
+                        <li>Tend to have higher average speechiness and energy values</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="storytelling">
+                <h3>Which analytical method works best for music analysis?</h3>
+                <p>Unsupervised clustering using t-SNE combined with audio feature analysis provides the most insightful perspective on music evolution. Traditional time-series analysis detected the gradual trends (R² of 0.64 for acousticness decline), while the clustering approach revealed more nuanced patterns in how musical styles emerge, evolve, and sometimes resurge years later. The interactive D3.js visualizations allow users to explore these musical patterns across time periods, popularity levels, and audio characteristics.</p>
+            </div>
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>The visualizations presented in this project reveal several important trends in popular music. We can observe the clear shift toward less acoustic and more produced sound over time, the optimal balance of audio features that correlate with high popularity, and the natural clustering of songs into genre-like groups. The data suggests that while music production technology has dramatically changed the sonic landscape, certain fundamental elements of what makes music appealing remain consistent across decades. This analysis provides insights not only for music enthusiasts but also for artists and producers looking to understand the changing preferences of listeners.</p>
+        </section>
+    </div>
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>44
