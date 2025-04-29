@@ -2,10 +2,10 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.7;
-    color: #2E2E2E; /* Keep text black for readability */
+    color: #FFFFFF;
     margin: 0;
     padding: 0;
-    background-color: #FFFFFF;
+    background-color: #000000; /* Black background */
 }
 
 .container {
@@ -18,13 +18,13 @@ body {
 
 /* Header Styles */
 header {
-    background-color: #F47C31; /* Orange */
-    color: #FFFFFF;
+    background-color: #1DB954; /* Spotify Green */
+    color: #000000;
     text-align: center;
     padding: 80px 20px;
     margin-bottom: 60px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
 h1 {
@@ -38,21 +38,17 @@ p.intro {
     max-width: 800px;
     margin: 25px auto;
     line-height: 1.8;
-    color: #FFFFFF;
+    color: #000000;
 }
 
 /* Section Styles */
 section {
-    background-color: #F7C7EC; /* Light Pink */
+    background-color: #000000;
+    border: 2px solid #1DB954;
     margin-bottom: 60px;
     padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     transition: transform 0.3s ease-in-out;
-}
-
-section:nth-child(even) {
-    background-color: #84C0E7; /* Light Blue alternate */
 }
 
 section:hover {
@@ -60,14 +56,14 @@ section:hover {
 }
 
 h2, h3 {
-    color: #2E2E2E;
+    color: #1DB954;
     font-weight: 700;
     margin-bottom: 25px;
 }
 
 p {
     font-size: 1.2em;
-    color: #4A4A4A;
+    color: #FFFFFF;
 }
 
 /* Chart Section Layout */
@@ -81,10 +77,10 @@ p {
 .chart-container {
     flex: 1 1 calc(50% - 40px);
     min-width: 400px;
-    background: #FFFFFF;
+    background: #000000;
+    border: 2px solid #1DB954;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     transition: transform 0.3s;
 }
 
@@ -95,22 +91,20 @@ p {
 .chart-description {
     font-size: 1.1em;
     margin-bottom: 20px;
-    color: #555;
+    color: #FFFFFF;
 }
 
 /* Insight Box Styling */
 .insight-box {
-    background-color: #FFFFFF;
+    background-color: #000000;
+    border-left: 10px solid #1DB954;
     padding: 30px;
-    border-left: 10px solid #B0A34A; /* Olive Green */
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    color: #2E2E2E;
-    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 12px;
+    color: #FFFFFF;
+    transition: transform 0.3s;
 }
 
 .insight-box:hover {
-    background-color: #F5C04A; /* Mustard Yellow hover */
     transform: translateY(-5px);
 }
 
@@ -126,9 +120,9 @@ p {
     flex: 1;
     min-width: 400px;
     padding: 30px;
-    background: #FFF;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    background: #000000;
+    border: 2px solid #1DB954;
+    border-radius: 12px;
     transition: transform 0.3s;
 }
 
@@ -144,7 +138,8 @@ ul {
 ul li {
     font-size: 1.1em;
     padding: 10px 0;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #1DB954;
+    color: #FFFFFF;
 }
 
 ul li:last-child {
@@ -153,10 +148,10 @@ ul li:last-child {
 
 /* Storytelling Section */
 .storytelling {
-    background: #FFFFFF;
+    background: #000000;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 2px solid #1DB954;
+    border-radius: 12px;
     transition: transform 0.3s;
     margin-top: 40px;
 }
@@ -168,15 +163,14 @@ ul li:last-child {
 /* Conclusion Section */
 #conclusion {
     text-align: center;
-    background: #F47C31; /* Orange again */
-    color: #FFFFFF;
+    background: #1DB954;
+    color: #000000;
     padding: 60px 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
 }
 
 #conclusion p {
-    color: #FFFFFF;
+    color: #000000;
     font-size: 1.3em;
     max-width: 900px;
     margin: 0 auto;
@@ -187,7 +181,7 @@ ul li:last-child {
     .chart-container {
         flex: 1 1 calc(100% - 40px);
     }
-    
+
     .comparison-container {
         flex-direction: column;
     }
@@ -197,7 +191,7 @@ ul li:last-child {
     header {
         padding: 60px 15px;
     }
-    
+
     h1 {
         font-size: 2.5em;
     }
