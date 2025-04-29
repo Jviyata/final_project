@@ -1,7 +1,7 @@
 // Import chart modules
-import { createEdgeBundlingChart } from './EdgeBundlingChart.js';
-import { createHeatmapChart } from './Heatmap.js';
-import { createRadarChart } from './RadarChart.js';
+import { createEdgeBundlingChart } from 'EdgeBundlingChart.js';
+import { createHeatmapChart } from 'Heatmap.js';
+import { createRadarChart } from 'RadarChart.js';
 
 // Sample data for the charts (would be loaded from an API/CSV in a real app)
 // Spotify song attributes dataset sample
