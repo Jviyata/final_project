@@ -133,7 +133,7 @@ function createEdgeBundlingChart(data, selector) {
     .style("text-anchor", d => d.x < 180 ? "start" : "end")
     .style("font-size", "12px")
     .style("font-family", "Arial, sans-serif")
-    .style("fill", "black")
+    .style("fill", "white")
     .text(d => d.data.name);
   
   svg.append("text")
@@ -143,7 +143,7 @@ function createEdgeBundlingChart(data, selector) {
     .style("font-size", "18px")
     .style("font-weight", "bold")
     .style("font-family", "Arial, sans-serif")
-    .style("fill", "black")
+    .style("fill", "white")
     .text("Music Genre Similarities");
 
   if (genres.length === 0) {
