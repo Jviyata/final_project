@@ -156,11 +156,10 @@ function createEdgeBundlingChart(data, selector) {
       .text("No data available to display");
   }
 
-  // === GENRE LEGEND (BOTTOM LEFT) ===
-  const genreLegendY = height / 2 + 40;
+  // === GENRE LEGEND (TOP LEFT) ===
   const genreLegend = svg.append("g")
     .attr("class", "legend")
-    .attr("transform", `translate(${-width / 2 + 20}, ${genreLegendY})`);
+    .attr("transform", `translate(${-width / 2 + 20}, ${-height / 2 + 20})`);
 
   genres.forEach((genre, i) => {
     const legendRow = genreLegend.append("g").attr("transform", `translate(0, ${i * 20})`);
@@ -176,11 +175,10 @@ function createEdgeBundlingChart(data, selector) {
       .text(genre);
   });
 
-  // === SIMILARITY LEGEND (BOTTOM LEFT, BELOW GENRES) ===
-  const similarityLegendY = genreLegendY + genres.length * 20 + 20;
+  // === SIMILARITY LEGEND (BOTTOM RIGHT) ===
   const lineLegend = svg.append("g")
     .attr("class", "line-legend")
-    .attr("transform", `translate(${-width / 2 + 20}, ${similarityLegendY})`);
+    .attr("transform", `translate(${width / 2 - 140}, ${height / 2 - 60})`);
 
   lineLegend.append("text")
     .attr("x", 0)
