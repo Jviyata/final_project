@@ -17,7 +17,7 @@ function createEdgeBundlingChart(data, selector) {
   
   // Calculate connections based on similarity threshold
   const links = [];
-  const similarityThreshold = 0.85; // Adjust as needed
+  const similarityThreshold = 0.75; // Lowered for more connections
   
   for (let i = 0; i < genres.length; i++) {
     for (let j = i + 1; j < genres.length; j++) {
@@ -46,9 +46,9 @@ function createEdgeBundlingChart(data, selector) {
     }
   }
   
-  // Create hierarchical structure
+  // Create hierarchical structure for the visualization
   const hierarchyData = {
-    name: "Music",
+    name: "music",
     children: genres.map(genre => ({ name: genre }))
   };
   
@@ -81,75 +81,78 @@ function createEdgeBundlingChart(data, selector) {
   // Create a color scale
   const color = d3.scaleOrdinal(d3.schemeCategory10);
   
-  // Prepare line generator
-  const line = d3.lineRadial()
+  // Map nodes by name for easy lookup
+  const nodeByName = {};
+  
+  root.descendants().forEach(node => {
+    if (node.data.name !== "music") {
+      nodeByName[node.data.name] = node;
+    }
+  });
+  
+  // Process links with actual node references
+  const processedLinks = [];
+  
+  links.forEach(link => {
+    const sourceNode = nodeByName[link.source];
+    const targetNode = nodeByName[link.target];
+    
+    if (sourceNode && targetNode) {
+      processedLinks.push({
+        source: sourceNode,
+        target: targetNode,
+        value: link.value
+      });
+    }
+  });
+  
+  // Prepare the line generator
+  const lineGenerator = d3.lineRadial()
     .curve(d3.curveBundle.beta(0.85))
     .radius(d => d.y)
     .angle(d => d.x * Math.PI / 180);
   
-  // Map nodes for link references
-  const nodeById = {};
-  root.descendants().forEach(node => {
-    if (node.depth === 2) {
-      nodeById[node.data.name] = node;
-    }
-  });
-  
-  // Create links
-  const bundledLinks = links.map(link => {
-    const source = nodeById[link.source];
-    const target = nodeById[link.target];
-    
-    const points = [source, target];
-    const controls = line.curve()(points);
-    
-    return {
-      source: source,
-      target: target,
-      value: link.value,
-      path: controls
-    };
-  });
-  
-  // Draw links
-  svg.selectAll("path")
-    .data(bundledLinks)
+  // Draw the connections
+  svg.selectAll("path.link")
+    .data(processedLinks)
     .enter()
     .append("path")
+    .attr("class", "link")
     .attr("d", d => {
-      return line([d.source, d.target]);
+      return lineGenerator([d.source, d.target]);
     })
-    .attr("fill", "none")
-    .attr("stroke", d => d3.interpolateBlues(d.value))
-    .attr("stroke-width", d => d.value * 3)
-    .attr("opacity", 0.7);
+    .style("fill", "none")
+    .style("stroke", d => d3.interpolateBlues(d.value))
+    .style("stroke-width", d => d.value * 2)
+    .style("opacity", 0.7);
   
-  // Draw nodes
-  const nodes = svg.selectAll(".node")
-    .data(root.descendants().filter(d => d.depth === 2))
+  // Add genre nodes
+  const genreNodes = svg.selectAll(".node")
+    .data(root.leaves())
     .enter()
     .append("g")
     .attr("class", "node")
     .attr("transform", d => `rotate(${d.x - 90}) translate(${d.y}, 0)`);
   
-  nodes.append("circle")
-    .attr("r", 5)
-    .attr("fill", d => color(d.data.name));
+  genreNodes.append("circle")
+    .attr("r", 4)
+    .style("fill", d => color(d.data.name));
   
-  nodes.append("text")
+  genreNodes.append("text")
     .attr("dy", "0.31em")
     .attr("transform", d => d.x < 180 ? "translate(8)" : "rotate(180) translate(-8)")
-    .attr("text-anchor", d => d.x < 180 ? "start" : "end")
+    .style("text-anchor", d => d.x < 180 ? "start" : "end")
     .text(d => d.data.name)
-    .style("font-size", "12px");
+    .style("font-size", "10px");
   
   // Add legend for connection strength
   const legendWidth = 200;
   const legendHeight = 20;
-  const legendPosition = { x: -width/2 + 50, y: -height/2 + 50 };
+  const legendX = -width/2 + 50;
+  const legendY = -height/2 + 50;
   
   const legend = svg.append("g")
-    .attr("transform", `translate(${legendPosition.x}, ${legendPosition.y})`);
+    .attr("transform", `translate(${legendX}, ${legendY})`);
   
   // Create gradient for legend
   const defs = svg.append("defs");
