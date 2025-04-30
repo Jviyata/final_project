@@ -18,7 +18,7 @@ body {
 
 /* Header Styles */
 header {
-    background-color: #1DB954; /* Spotify Green */
+    background: linear-gradient(45deg, #1DB954, #00b200, #007e00); /* Mesh green gradient */
     color: #121212;
     text-align: center;
     padding: 100px 20px;
@@ -31,6 +31,7 @@ h1 {
     margin: 0;
     font-size: 3.5em;
     font-weight: 800;
+    text-align: center; /* Center the h1 */
 }
 
 p.intro {
@@ -62,6 +63,7 @@ h2, h3 {
     font-weight: 700;
     font-size: 1.8em;
     margin-bottom: 20px;
+    text-align: center; /* Center the h2 and h3 */
 }
 
 p {
@@ -172,7 +174,7 @@ ul li:last-child {
 #conclusion {
     text-align: center;
     background-color: #1DB954;
-    color: #121212;
+    color: white;
     padding: 60px 20px;
     border-radius: 15px;
 }
