@@ -1,12 +1,4 @@
-// Import chart modules
-import { createEdgeBundlingChart } from 'js/EdgeBundlingChart.js';
-import { createHeatmapChart } from 'js/Heatmap.js';
-import { createRadarChart } from 'js/RadarChart.js';
 
-// Sample data for the charts (would be loaded from an API/CSV in a real app)
-// Spotify song attributes dataset sample
-
-// Data for our visualizations - combining attributes for various genres
 const musicData = [
     { danceability: 0.72, energy: 0.82, acousticness: 0.12, valence: 0.82, popularity: 89, genre: "Pop" },
     { danceability: 0.65, energy: 0.93, acousticness: 0.08, valence: 0.65, popularity: 76, genre: "Rock" },
