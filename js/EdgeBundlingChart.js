@@ -17,7 +17,7 @@ function createEdgeBundlingChart(data, selector) {
   
   // Calculate connections based on similarity threshold
   const links = [];
-  const similarityThreshold = 0.75; // Lowered for more connections
+  const similarityThreshold = 0.7; // Adjusted for better visibility
   
   for (let i = 0; i < genres.length; i++) {
     for (let j = i + 1; j < genres.length; j++) {
@@ -52,19 +52,23 @@ function createEdgeBundlingChart(data, selector) {
     children: genres.map(genre => ({ name: genre }))
   };
   
-  // Set up dimensions
-  const width = 700;
-  const height = 700;
-  const radius = Math.min(width, height) / 2 - 50;
+  // Set up dimensions - made responsive
+  const container = d3.select(selector);
+  const containerWidth = container.node().getBoundingClientRect().width;
+  const width = containerWidth || 700;
+  const height = width; // Keep it square
+  const radius = Math.min(width, height) / 2 - 80; // Increased margin
   
   // Clear previous SVG
   d3.select(selector).html("");
   
-  // Create SVG
+  // Create SVG with viewBox for responsiveness
   const svg = d3.select(selector)
     .append("svg")
     .attr("width", width)
     .attr("height", height)
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
     .append("g")
     .attr("transform", `translate(${width/2},${height/2})`);
   
@@ -123,8 +127,8 @@ function createEdgeBundlingChart(data, selector) {
     })
     .style("fill", "none")
     .style("stroke", d => d3.interpolateBlues(d.value))
-    .style("stroke-width", d => d.value * 2)
-    .style("opacity", 0.7);
+    .style("stroke-width", d => d.value * 3) // Increased for better visibility
+    .style("opacity", 0.8); // Increased for better visibility
   
   // Add genre nodes
   const genreNodes = svg.selectAll(".node")
@@ -135,21 +139,33 @@ function createEdgeBundlingChart(data, selector) {
     .attr("transform", d => `rotate(${d.x - 90}) translate(${d.y}, 0)`);
   
   genreNodes.append("circle")
-    .attr("r", 4)
+    .attr("r", 5) // Increased size
     .style("fill", d => color(d.data.name));
   
   genreNodes.append("text")
     .attr("dy", "0.31em")
-    .attr("transform", d => d.x < 180 ? "translate(8)" : "rotate(180) translate(-8)")
+    .attr("transform", d => d.x < 180 ? "translate(10)" : "rotate(180) translate(-10)") // Increased spacing
     .style("text-anchor", d => d.x < 180 ? "start" : "end")
     .text(d => d.data.name)
-    .style("font-size", "10px");
+    .style("font-size", "12px") // Increased font size
+    .style("font-family", "Arial, sans-serif")
+    .style("fill", "#333");
   
-  // Add legend for connection strength
+  // Add title for the chart
+  svg.append("text")
+    .attr("x", 0)
+    .attr("y", -height/2 + 20)
+    .attr("text-anchor", "middle")
+    .style("font-size", "18px")
+    .style("font-weight", "bold")
+    .style("font-family", "Arial, sans-serif")
+    .text("Music Genre Similarities");
+  
+  // Add legend for connection strength with better positioning
   const legendWidth = 200;
   const legendHeight = 20;
-  const legendX = -width/2 + 50;
-  const legendY = -height/2 + 50;
+  const legendX = -width/2 + 70;
+  const legendY = height/2 - 60;
   
   const legend = svg.append("g")
     .attr("transform", `translate(${legendX}, ${legendY})`);
@@ -174,21 +190,43 @@ function createEdgeBundlingChart(data, selector) {
   legend.append("rect")
     .attr("width", legendWidth)
     .attr("height", legendHeight)
-    .style("fill", "url(#edge-gradient)");
+    .style("fill", "url(#edge-gradient)")
+    .style("stroke", "#999");
   
   legend.append("text")
     .attr("x", 0)
     .attr("y", -5)
+    .style("font-size", "12px")
+    .style("font-weight", "bold")
+    .style("font-family", "Arial, sans-serif")
     .text("Genre Similarity");
   
   legend.append("text")
     .attr("x", 0)
     .attr("y", legendHeight + 15)
+    .style("font-size", "10px")
+    .style("font-family", "Arial, sans-serif")
     .text("Lower");
   
   legend.append("text")
     .attr("x", legendWidth)
     .attr("y", legendHeight + 15)
     .attr("text-anchor", "end")
+    .style("font-size", "10px")
+    .style("font-family", "Arial, sans-serif")
     .text("Higher");
+    
+  // Add helper function to check if data is valid
+  console.log("Chart created with", genres.length, "genres and", processedLinks.length, "connections");
+  
+  // Add no data message if needed
+  if (genres.length === 0) {
+    svg.append("text")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("text-anchor", "middle")
+      .style("font-size", "16px")
+      .style("font-family", "Arial, sans-serif")
+      .text("No data available to display");
+  }
 }
