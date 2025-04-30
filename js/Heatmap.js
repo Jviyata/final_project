@@ -11,12 +11,10 @@ function createHeatmapChart(data, selector) {
     }),
     d => d.genre
   );
-  
-  // Convert to array format for heatmap
+
   const genres = Array.from(genreMap.keys());
   const features = ["danceability", "energy", "acousticness", "valence", "popularity"];
-  
-  // Create heatmap data array
+
   const heatmapData = [];
   genres.forEach(genre => {
     const values = genreMap.get(genre);
@@ -28,63 +26,62 @@ function createHeatmapChart(data, selector) {
       });
     });
   });
-  
-  // Set the dimensions and margins
+
   const margin = { top: 50, right: 30, bottom: 100, left: 120 };
   const width = 700 - margin.left - margin.right;
   const height = 500 - margin.top - margin.bottom;
-  
-  // Clear previous SVG
+
   d3.select(selector).html("");
-  
-  // Create SVG
+
   const svg = d3.select(selector)
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
-  
-  // Build X scale and axis
+
   const x = d3.scaleBand()
     .range([0, width])
     .domain(features)
     .padding(0.05);
-  
+
   svg.append("g")
     .attr("transform", `translate(0,${height})`)
     .call(d3.axisBottom(x))
     .selectAll("text")
     .attr("transform", "translate(-10,0)rotate(-45)")
     .style("text-anchor", "end");
-  
-  // Build Y scale and axis
+
   const y = d3.scaleBand()
     .range([height, 0])
     .domain(genres)
     .padding(0.05);
-  
+
   svg.append("g")
     .call(d3.axisLeft(y));
-  
-  // Build color scale
-  const colorScale = d3.scaleSequential()
-    .interpolator(d3.interpolateInferno)
-    .domain([0, 1]);
-  
-  // Create tooltip
+
+  // Neon green-blue custom color scale
+  const colorScale = d3.scaleLinear()
+    .domain([0, 0.5, 1])
+    .range(["#00FF9F", "#00FFFF", "#00BFFF"]);
+
+  // Tooltip
   const tooltip = d3.select("body")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
+    .style("background-color", "#0a0a0a")
+    .style("color", "#00FFFF")
+    .style("border", "1px solid #00FFFF")
     .style("border-radius", "5px")
-    .style("padding", "5px")
-    .style("position", "absolute");
-  
-  // Add heatmap cells
+    .style("padding", "8px 12px")
+    .style("font-size", "12px")
+    .style("position", "absolute")
+    .style("pointer-events", "none")
+    .style("z-index", "1000");
+
   svg.selectAll()
     .data(heatmapData)
     .enter()
@@ -97,42 +94,42 @@ function createHeatmapChart(data, selector) {
     .style("stroke-width", 4)
     .style("stroke", "none")
     .style("opacity", 0.8)
-    .on("mouseover", function(event, d) {
+    .on("mouseover", function (event, d) {
       tooltip.style("opacity", 1);
       d3.select(this)
-        .style("stroke", "black")
+        .style("stroke", "#00FFFF")
         .style("opacity", 1);
     })
-    .on("mousemove", function(event, d) {
+    .on("mousemove", function (event, d) {
       tooltip
-        .html(`Genre: ${d.genre}<br>${d.feature}: ${d.value.toFixed(2)}`)
-        .style("left", (event.pageX + 10) + "px")
-        .style("top", (event.pageY - 28) + "px");
+        .html(`<strong>Genre:</strong> ${d.genre}<br><strong>${d.feature}:</strong> ${d.value.toFixed(2)}`)
+        .style("left", (event.pageX + 15) + "px")
+        .style("top", (event.pageY - 40) + "px");
     })
-    .on("mouseleave", function(event, d) {
+    .on("mouseleave", function () {
       tooltip.style("opacity", 0);
       d3.select(this)
         .style("stroke", "none")
         .style("opacity", 0.8);
     });
-  
-  // Add title
+
+  // Title
   svg.append("text")
     .attr("x", width / 2)
     .attr("y", -20)
     .attr("text-anchor", "middle")
     .style("font-size", "16px")
+    .style("fill", "#00FFFF")
     .text("Music Genre Attributes Heatmap");
-  
-  // Add color legend
+
+  // Legend
   const legendWidth = width * 0.6;
   const legendHeight = 15;
-  const legendPosition = { x: width/2 - legendWidth/2, y: height + 70 };
-  
+  const legendPosition = { x: width / 2 - legendWidth / 2, y: height + 70 };
+
   const legend = svg.append("g")
     .attr("transform", `translate(${legendPosition.x}, ${legendPosition.y})`);
-  
-  // Create gradient for legend
+
   const defs = svg.append("defs");
   const gradient = defs.append("linearGradient")
     .attr("id", "heatmap-gradient")
@@ -140,36 +137,39 @@ function createHeatmapChart(data, selector) {
     .attr("y1", "0%")
     .attr("x2", "100%")
     .attr("y2", "0%");
-  
-  // Add color stops
-  const stops = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
-  stops.forEach(stop => {
+
+  const neonStops = [
+    { offset: "0%", color: "#00FF9F" },
+    { offset: "50%", color: "#00FFFF" },
+    { offset: "100%", color: "#00BFFF" }
+  ];
+
+  neonStops.forEach(stop => {
     gradient.append("stop")
-      .attr("offset", `${stop * 100}%`)
-      .attr("stop-color", colorScale(stop));
+      .attr("offset", stop.offset)
+      .attr("stop-color", stop.color);
   });
-  
-  // Draw rectangle with gradient fill
+
   legend.append("rect")
     .attr("width", legendWidth)
     .attr("height", legendHeight)
     .style("fill", "url(#heatmap-gradient)");
-  
-  // Add legend axis
+
   const legendScale = d3.scaleLinear()
     .domain([0, 1])
     .range([0, legendWidth]);
-  
+
   legend.append("g")
     .attr("transform", `translate(0, ${legendHeight})`)
     .call(d3.axisBottom(legendScale)
       .tickSize(6)
       .tickValues([0, 0.2, 0.4, 0.6, 0.8, 1])
       .tickFormat(d3.format(".1f")));
-  
+
   legend.append("text")
     .attr("x", legendWidth / 2)
     .attr("y", legendHeight + 30)
     .attr("text-anchor", "middle")
+    .style("fill", "#00FFFF")
     .text("Attribute Value");
 }
