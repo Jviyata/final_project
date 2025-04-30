@@ -48,7 +48,7 @@ function createRadarChart(data, selector) {
       .attr("cx", 0)
       .attr("cy", 0)
       .attr("r", radialScale(t))
-      .attr("stroke", "gray")
+      .attr("stroke", "#ccc") // light gray
       .attr("fill", "none")
       .attr("stroke-dasharray", "2,2");
     
@@ -57,6 +57,7 @@ function createRadarChart(data, selector) {
       .attr("y", -radialScale(t))
       .attr("text-anchor", "middle")
       .style("font-size", "10px")
+      .style("fill", "white") // white text
       .text(t.toString());
   });
   
@@ -65,18 +66,19 @@ function createRadarChart(data, selector) {
   
   features.forEach((feature, i) => {
     const angle = i * angleSlice;
-    const line = svg.append("line")
+    svg.append("line")
       .attr("x1", 0)
       .attr("y1", 0)
       .attr("x2", radius * Math.cos(angle - Math.PI/2))
       .attr("y2", radius * Math.sin(angle - Math.PI/2))
-      .attr("stroke", "gray")
+      .attr("stroke", "#ccc") // light gray
       .attr("stroke-width", 1);
     
     svg.append("text")
       .attr("x", (radius + 10) * Math.cos(angle - Math.PI/2))
       .attr("y", (radius + 10) * Math.sin(angle - Math.PI/2))
       .attr("text-anchor", "middle")
+      .style("fill", "white") // white text
       .text(feature);
   });
   
@@ -89,7 +91,7 @@ function createRadarChart(data, selector) {
   const color = d3.scaleOrdinal(d3.schemeCategory10);
   
   // Draw radar paths for each genre
-  chartData.slice(0, 5).forEach((d, i) => { // Limit to 5 genres for clarity
+  chartData.slice(0, 5).forEach((d, i) => {
     const dataValues = features.map(feature => ({
       value: d[feature]
     }));
@@ -130,6 +132,7 @@ function createRadarChart(data, selector) {
       .attr("x", 20)
       .attr("y", i * 20 + 8)
       .text(d.genre)
-      .style("font-size", "12px");
+      .style("font-size", "12px")
+      .style("fill", "white"); // white legend text
   });
 }
