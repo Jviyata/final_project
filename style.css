@@ -1,199 +1,166 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Dark background for contrast */
-    color: #EDEDED; /* Light text color for readability */
+    font-family: 'Inter', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-    box-sizing: border-box;
-}
-
 /* Header Styles */
 header {
-    background: linear-gradient(45deg, #1DB954, #00b200, #007e00); /* Mesh green gradient */
-    color: #121212;
+    background: linear-gradient(135deg, #3a5f7d, #6c8ea4);
+    color: #f5f5f5;
     text-align: center;
     padding: 100px 20px;
-    margin-bottom: 60px;
-    border-radius: 15px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
     margin: 0;
     font-size: 3.5em;
-    font-weight: 800;
-    text-align: center; /* Center the h1 */
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    color: #ffffff; /* Ensures the header is white */
 }
 
-p.intro {
-    font-size: 1.3em;
-    margin-top: 20px;
-    color: #121212;
-    line-height: 1.8;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+h2, h3 {
+    color: #ffffff; /* Bright white color for contrast */
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.5em; /* Adjusted for better visibility */
+    padding-bottom: 10px; /* Added spacing */
+    border-bottom: 2px solid #8fa6bd; /* Light border to make it stand out */
+}
+
+h3 {
+    font-size: 2em; /* Adjusted for better visibility */
+    padding-bottom: 8px;
+    border-bottom: 1px solid #8fa6bd; /* Subtle border */
 }
 
 /* Section Styles */
 section {
-    background-color: #181818;
-    border: 2px solid #1DB954;
-    margin-bottom: 60px;
-    padding: 50px;
-    border-radius: 15px;
-    transition: transform 0.3s ease;
+    background-color: #1b1b1b;
+    border: 1px solid #444;
+    margin-bottom: 50px;
+    padding: 40px;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 section:hover {
-    transform: translateY(-8px);
-}
-
-h2, h3 {
-    color: #1DB954;
-    font-weight: 700;
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    text-align: center; /* Center the h2 and h3 */
-}
-
-p {
-    font-size: 1.1em;
-    color: #EDEDED;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Chart Section Layout */
 #visualization-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
+    gap: 35px;
+    justify-content: space-between;
 }
 
 .chart-container {
-    background-color: #121212;
-    border: 2px solid #1DB954;
-    border-radius: 15px;
-    padding: 30px;
-    width: 48%;
-    min-width: 400px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 40px;
+    background-color: #171717;
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 25px;
+    flex: 1 1 48%;
+    min-width: 360px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .chart-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.chart-description {
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    color: #EDEDED;
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 /* Insight Box Styling */
 .insight-box {
-    background-color: #121212;
-    border-left: 10px solid #1DB954;
-    padding: 20px;
-    border-radius: 15px;
-    color: #EDEDED;
-    transition: transform 0.3s ease;
+    background-color: #171717;
+    border-left: 6px solid #8fa6bd;
+    padding: 18px;
+    border-radius: 12px;
+    color: #ddd;
+    transition: transform 0.2s ease;
 }
 
 .insight-box:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
 }
 
 /* Comparison Section */
 .comparison-container {
     display: flex;
-    gap: 30px;
+    gap: 25px;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 40px;
+    margin-top: 35px;
 }
 
 .comparison-item {
-    background-color: #121212;
-    border: 2px solid #1DB954;
-    border-radius: 15px;
-    padding: 30px;
-    width: 48%;
-    min-width: 350px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 40px;
+    background-color: #171717;
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 25px;
+    flex: 1 1 45%;
+    min-width: 320px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .comparison-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    font-size: 1.1em;
-    padding: 10px 0;
-    color: #EDEDED;
-    border-bottom: 1px solid #1DB954;
-}
-
-ul li:last-child {
-    border-bottom: none;
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 /* Storytelling Section */
 .storytelling {
-    background-color: #121212;
-    padding: 40px;
-    border: 2px solid #1DB954;
-    border-radius: 15px;
-    margin-top: 40px;
-    transition: transform 0.3s ease;
+    background-color: #0f0f0f;
+    padding: 35px;
+    border: 1px solid #444;
+    border-radius: 12px;
+    margin-top: 35px;
+    transition: transform 0.2s ease;
 }
 
 .storytelling:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /* Conclusion Section */
 #conclusion {
     text-align: center;
-    background-color: #1DB954;
-    color: white;
-    padding: 60px 20px;
-    border-radius: 15px;
+    background: #3a5f7d;
+    color: #f5f5f5;
+    padding: 50px 20px;
+    border-radius: 12px;
 }
 
 #conclusion p {
-    color: #121212;
-    font-size: 1.3em;
-    max-width: 900px;
+    color: #f5f5f5;
+    font-size: 1.25em;
+    max-width: 850px;
     margin: 0 auto;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     .chart-container {
-        width: 100%;
+        flex: 1 1 100%;
     }
 
-    .comparison-container {
-        flex-direction: column;
+    .comparison-item {
+        flex: 1 1 100%;
     }
 }
 
@@ -201,20 +168,16 @@ ul li:last-child {
     header {
         padding: 80px 15px;
     }
-
     h1 {
-        font-size: 2.8em;
+        font-size: 2.6em;
     }
-
     p.intro {
         font-size: 1.1em;
     }
-
     .container {
         padding: 15px;
     }
-
     section {
-        padding: 40px;
+        padding: 30px;
     }
 }
