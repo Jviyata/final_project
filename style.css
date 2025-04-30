@@ -1,133 +1,141 @@
 /* General Styles */
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.7;
-    color: #FFFFFF;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background for contrast */
+    color: #EDEDED; /* Light text color for readability */
     margin: 0;
     padding: 0;
-    background-color: #000000; /* Black background */
+    line-height: 1.6;
 }
 
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 30px;
     box-sizing: border-box;
 }
 
 /* Header Styles */
 header {
     background-color: #1DB954; /* Spotify Green */
-    color: #000000;
+    color: #121212;
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px;
     margin-bottom: 60px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     margin: 0;
     font-size: 3.5em;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 p.intro {
-    font-size: 1.4em;
-    max-width: 800px;
-    margin: 25px auto;
+    font-size: 1.3em;
+    margin-top: 20px;
+    color: #121212;
     line-height: 1.8;
-    color: #000000;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Section Styles */
 section {
-    background-color: #000000;
+    background-color: #181818;
     border: 2px solid #1DB954;
     margin-bottom: 60px;
     padding: 50px;
-    border-radius: 12px;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
 }
 
 section:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 h2, h3 {
     color: #1DB954;
     font-weight: 700;
-    margin-bottom: 25px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 p {
-    font-size: 1.2em;
-    color: #FFFFFF;
+    font-size: 1.1em;
+    color: #EDEDED;
 }
 
 /* Chart Section Layout */
 #visualization-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
-    justify-content: space-evenly;
+    gap: 40px;
+    justify-content: center;
 }
 
 .chart-container {
-    flex: 1 1 calc(50% - 40px);
-    min-width: 400px;
-    background: #000000;
+    background-color: #121212;
     border: 2px solid #1DB954;
-    padding: 40px;
-    border-radius: 12px;
-    transition: transform 0.3s;
+    border-radius: 15px;
+    padding: 30px;
+    width: 48%;
+    min-width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 40px;
 }
 
 .chart-container:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .chart-description {
     font-size: 1.1em;
     margin-bottom: 20px;
-    color: #FFFFFF;
+    color: #EDEDED;
 }
 
 /* Insight Box Styling */
 .insight-box {
-    background-color: #000000;
+    background-color: #121212;
     border-left: 10px solid #1DB954;
-    padding: 30px;
-    border-radius: 12px;
-    color: #FFFFFF;
-    transition: transform 0.3s;
+    padding: 20px;
+    border-radius: 15px;
+    color: #EDEDED;
+    transition: transform 0.3s ease;
 }
 
 .insight-box:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 /* Comparison Section */
 .comparison-container {
     display: flex;
-    gap: 40px;
+    gap: 30px;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 
 .comparison-item {
-    flex: 1;
-    min-width: 400px;
-    padding: 30px;
-    background: #000000;
+    background-color: #121212;
     border: 2px solid #1DB954;
-    border-radius: 12px;
-    transition: transform 0.3s;
+    border-radius: 15px;
+    padding: 30px;
+    width: 48%;
+    min-width: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 40px;
 }
 
 .comparison-item:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 ul {
@@ -138,8 +146,8 @@ ul {
 ul li {
     font-size: 1.1em;
     padding: 10px 0;
+    color: #EDEDED;
     border-bottom: 1px solid #1DB954;
-    color: #FFFFFF;
 }
 
 ul li:last-child {
@@ -148,29 +156,29 @@ ul li:last-child {
 
 /* Storytelling Section */
 .storytelling {
-    background: #000000;
+    background-color: #121212;
     padding: 40px;
     border: 2px solid #1DB954;
-    border-radius: 12px;
-    transition: transform 0.3s;
+    border-radius: 15px;
     margin-top: 40px;
+    transition: transform 0.3s ease;
 }
 
 .storytelling:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 /* Conclusion Section */
 #conclusion {
     text-align: center;
-    background: #1DB954;
-    color: #000000;
+    background-color: #1DB954;
+    color: #121212;
     padding: 60px 20px;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 #conclusion p {
-    color: #000000;
+    color: #121212;
     font-size: 1.3em;
     max-width: 900px;
     margin: 0 auto;
@@ -179,7 +187,7 @@ ul li:last-child {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .chart-container {
-        flex: 1 1 calc(100% - 40px);
+        width: 100%;
     }
 
     .comparison-container {
@@ -189,22 +197,22 @@ ul li:last-child {
 
 @media (max-width: 768px) {
     header {
-        padding: 60px 15px;
+        padding: 80px 15px;
     }
 
     h1 {
-        font-size: 2.5em;
+        font-size: 2.8em;
     }
 
     p.intro {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 
     .container {
-        padding: 20px;
+        padding: 15px;
     }
 
     section {
-        padding: 30px;
+        padding: 40px;
     }
 }
