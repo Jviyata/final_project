@@ -53,7 +53,7 @@ function createEdgeBundlingChart(data, selector) {
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
-    .style("background", "#ffffff") // White background
+    // no background set, transparent by default
     .append("g")
     .attr("transform", `translate(${width / 2},${height / 2})`);
   
@@ -80,6 +80,11 @@ function createEdgeBundlingChart(data, selector) {
     .curve(d3.curveBundle.beta(0.85))
     .radius(d => d.y)
     .angle(d => d.x * Math.PI / 180);
+
+  // Neon gradient color scale
+  const neonColorScale = d3.scaleLinear()
+    .domain([similarityThreshold, 1])
+    .range(["#39ff14", "#1f51ff"]); // neon green to neon blue
   
   svg.selectAll("path.link")
     .data(processedLinks)
@@ -88,9 +93,9 @@ function createEdgeBundlingChart(data, selector) {
     .attr("class", "link")
     .attr("d", d => lineGenerator([d.source, d.target]))
     .style("fill", "none")
-    .style("stroke", d => d3.interpolateBlues(d.value))
+    .style("stroke", d => neonColorScale(d.value))
     .style("stroke-width", d => d.value * 3)
-    .style("opacity", 0.8);
+    .style("opacity", 0.9);
   
   const genreNodes = svg.selectAll(".node")
     .data(root.leaves())
@@ -109,7 +114,7 @@ function createEdgeBundlingChart(data, selector) {
     .style("text-anchor", d => d.x < 180 ? "start" : "end")
     .style("font-size", "12px")
     .style("font-family", "Arial, sans-serif")
-    .style("fill", "black") // Black text
+    .style("fill", "black")
     .text(d => d.data.name);
   
   svg.append("text")
@@ -119,65 +124,9 @@ function createEdgeBundlingChart(data, selector) {
     .style("font-size", "18px")
     .style("font-weight", "bold")
     .style("font-family", "Arial, sans-serif")
-    .style("fill", "black") // Black text
+    .style("fill", "black")
     .text("Music Genre Similarities");
 
-  const legendWidth = 200;
-  const legendHeight = 20;
-  const legendX = -width / 2 + 70;
-  const legendY = height / 2 - 60;
-
-  const legend = svg.append("g")
-    .attr("transform", `translate(${legendX}, ${legendY})`);
-  
-  const defs = svg.append("defs");
-  const gradient = defs.append("linearGradient")
-    .attr("id", "edge-gradient")
-    .attr("x1", "0%")
-    .attr("y1", "0%")
-    .attr("x2", "100%")
-    .attr("y2", "0%");
-  
-  gradient.append("stop")
-    .attr("offset", "0%")
-    .attr("stop-color", d3.interpolateBlues(similarityThreshold));
-  
-  gradient.append("stop")
-    .attr("offset", "100%")
-    .attr("stop-color", d3.interpolateBlues(1));
-  
-  legend.append("rect")
-    .attr("width", legendWidth)
-    .attr("height", legendHeight)
-    .style("fill", "url(#edge-gradient)")
-    .style("stroke", "#999");
-  
-  legend.append("text")
-    .attr("x", 0)
-    .attr("y", -5)
-    .style("font-size", "12px")
-    .style("font-weight", "bold")
-    .style("font-family", "Arial, sans-serif")
-    .style("fill", "black") // Black text
-    .text("Genre Similarity");
-  
-  legend.append("text")
-    .attr("x", 0)
-    .attr("y", legendHeight + 15)
-    .style("font-size", "10px")
-    .style("font-family", "Arial, sans-serif")
-    .style("fill", "black") // Black text
-    .text("Lower");
-  
-  legend.append("text")
-    .attr("x", legendWidth)
-    .attr("y", legendHeight + 15)
-    .attr("text-anchor", "end")
-    .style("font-size", "10px")
-    .style("font-family", "Arial, sans-serif")
-    .style("fill", "black") // Black text
-    .text("Higher");
-  
   if (genres.length === 0) {
     svg.append("text")
       .attr("x", 0)
@@ -185,7 +134,7 @@ function createEdgeBundlingChart(data, selector) {
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
       .style("font-family", "Arial, sans-serif")
-      .style("fill", "black") // Black text
+      .style("fill", "black")
       .text("No data available to display");
   }
 
