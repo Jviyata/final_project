@@ -53,7 +53,6 @@ function createEdgeBundlingChart(data, selector) {
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
-    // no background set, transparent by default
     .append("g")
     .attr("transform", `translate(${width / 2},${height / 2})`);
   
@@ -86,6 +85,17 @@ function createEdgeBundlingChart(data, selector) {
     .domain([similarityThreshold, 1])
     .range(["#39ff14", "#1f51ff"]); // neon green to neon blue
   
+  const tooltip = d3.select(selector)
+    .append("div")
+    .attr("class", "tooltip")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .style("background", "rgba(0, 0, 0, 0.7)")
+    .style("color", "#fff")
+    .style("padding", "5px")
+    .style("border-radius", "5px")
+    .style("font-size", "12px");
+  
   svg.selectAll("path.link")
     .data(processedLinks)
     .enter()
@@ -95,7 +105,16 @@ function createEdgeBundlingChart(data, selector) {
     .style("fill", "none")
     .style("stroke", d => neonColorScale(d.value))
     .style("stroke-width", d => d.value * 3)
-    .style("opacity", 0.9);
+    .style("opacity", 0.9)
+    .on("mouseover", function (event, d) {
+      tooltip.style("visibility", "visible")
+        .html(`Genres: ${d.source.data.name} & ${d.target.data.name}<br>Similarity: ${(d.value * 100).toFixed(2)}%`)
+        .style("left", (event.pageX + 10) + "px")
+        .style("top", (event.pageY - 30) + "px");
+    })
+    .on("mouseout", function () {
+      tooltip.style("visibility", "hidden");
+    });
   
   const genreNodes = svg.selectAll(".node")
     .data(root.leaves())
